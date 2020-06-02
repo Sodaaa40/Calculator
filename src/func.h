@@ -1,5 +1,7 @@
 #ifndef UI_H
 #define UI_H
+#include <gtk/gtk.h>
+
 void zero_clicked(GtkWidget* widget, gpointer data);
 void one_clicked(GtkWidget* widget, gpointer data);
 void two_clicked(GtkWidget* widget, gpointer data);
@@ -21,6 +23,5 @@ void leftBracket_clicked(GtkWidget* widget, gpointer data);
 void rightBracket_clicked(GtkWidget* widget, gpointer data);
 void point_clicked(GtkWidget* widget, gpointer data);
 void result_clicked(GtkWidget* widget, gpointer data);
-
 
 #endif
