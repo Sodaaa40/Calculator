@@ -80,34 +80,25 @@ int main(int a, char *h[]) {
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Калькулятор");
-	gtk_window_set_default_size(GTK_WINDOW(window), 340, 380);
+	gtk_window_set_default_size(GTK_WINDOW(window), 300, 450);
 
 	okno = gtk_entry_new();
 
 	GtkWidget *table;
 	table = gtk_table_new(4, 6, FALSE);
 	gtk_table_attach_defaults(GTK_TABLE(table), okno, 0, 3, 0, 1);
-    gtk_table_attach_defaults(GTK_TABLE(table), zero, 1, 2, 4, 5);
-	gtk_table_attach_defaults(GTK_TABLE(table), one, 0, 1, 3, 4);
-	gtk_table_attach_defaults(GTK_TABLE(table), two, 1, 2, 3, 4);
-	gtk_table_attach_defaults(GTK_TABLE(table), three, 2, 3, 3, 4);
-	gtk_table_attach_defaults(GTK_TABLE(table), four, 0, 1, 2, 3);
-	gtk_table_attach_defaults(GTK_TABLE(table), five, 1, 2, 2, 3);
-	gtk_table_attach_defaults(GTK_TABLE(table), six, 2, 3, 2, 3);
-	gtk_table_attach_defaults(GTK_TABLE(table), seven, 0, 1, 1, 2);
-	gtk_table_attach_defaults(GTK_TABLE(table), eight, 1, 2, 1, 2);
-	gtk_table_attach_defaults(GTK_TABLE(table), nine, 2, 3, 1, 2);
-	gtk_table_attach_defaults(GTK_TABLE(table), plus, 3, 4, 1, 2);
-	gtk_table_attach_defaults(GTK_TABLE(table), minus, 3, 4, 2, 3);
-	gtk_table_attach_defaults(GTK_TABLE(table), sqrt, 0, 1, 4, 5);
-	gtk_table_attach_defaults(GTK_TABLE(table), pow, 2, 3, 4, 5);
-	gtk_table_attach_defaults(GTK_TABLE(table), multiply, 3, 4, 4,5);
-	gtk_table_attach_defaults(GTK_TABLE(table), divide, 3, 4, 3, 4);
-	gtk_table_attach_defaults(GTK_TABLE(table), leftBracket, 0, 1, 5,6);
-	gtk_table_attach_defaults(GTK_TABLE(table), rightBracket, 1, 2,5, 6);
-	gtk_table_attach_defaults(GTK_TABLE(table), point, 2, 3, 5, 6);
-	gtk_table_attach_defaults(GTK_TABLE(table), delete, 3, 4, 0,1);
-	gtk_table_attach_defaults(GTK_TABLE(table), result, 3, 4, 5, 6);
+    gtk_table_attach_defaults(GTK_TABLE(table), delete, 3, 4, 0,1);
+    int x = 0;
+    int y = 1;
+    GtkWidget *mas[20] = {seven, eight, nine, plus, four, five, six, minus, one, two, three, divide, sqrt, zero, pow, multiply, leftBracket, rightBracket, point, result};    
+    for(int i = 0; i < 20; i++) {
+        if(x > 3) {
+            x = 0;
+            y++;
+        }
+        gtk_table_attach_defaults(GTK_TABLE(table), mas[i], x, x+1, y, y+1);
+        x++;                   
+    }
 	gtk_container_add(GTK_CONTAINER(window), table);
 	gtk_widget_show_all(window);
 	g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
