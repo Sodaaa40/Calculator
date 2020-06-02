@@ -1,10 +1,12 @@
 #include <gtk/gtk.h>
 #include <string.h>
+#include "input.h"
 
 extern int f;
 extern gchar text[100];
 extern gchar otv[20];
 extern GtkWidget* okno;
+void input(char **str, int* length);
 
 void zero_clicked(GtkWidget* widget, gpointer data) {
 	strcat(text, (gchar*)data);
@@ -87,4 +89,6 @@ void delete_clicked(GtkWidget* widget, gpointer data) {
 	gtk_entry_set_text(GTK_ENTRY(okno), text);
 }
 void result_clicked(GtkWidget* widget, gpointer data) {
+    char *s = &text[0];
+    input(&s, &f);
 }

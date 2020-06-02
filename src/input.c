@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-extern int length
+#include "input.h"
+extern int length;
+extern gchar text[100];
+extern gchar otv[20];
 
 int symbol(char ch, char* list) //Все доступные символы
 {
@@ -16,15 +19,6 @@ int symbol(char ch, char* list) //Все доступные символы
 
 void wronginput()
 {
-    text = gtk_label_new("Wrong input");
-    gtk_container_add(GTK_CONTAINER(area), text);
-    gtk_widget_show(text);
-    gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_widget_destroy(dialog);
-}
-
-int input(char** str, int* length)
-{
     GtkWidget* dialog;
     GtkWidget* text;
     GtkWidget* area;
@@ -36,6 +30,15 @@ int input(char** str, int* length)
             GTK_RESPONSE_ACCEPT,
             NULL);
     area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+    text = gtk_label_new("Wrong input");
+    gtk_container_add(GTK_CONTAINER(area), text);
+    gtk_widget_show(text);
+    gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+}
+
+int input(char** str, int* length)
+{
     int i, j, open = 0;
     int indicator = 1;
     char* list = "-+*/()^.1234567890";
@@ -52,7 +55,7 @@ int input(char** str, int* length)
                         || (symbol((*str)[i + 1],
                                    "+-*/^")))))) //неверно расставлены знаки
         {
-            wronginput()
+            wronginput();
         }
         if (((*str)[i] == '.')
             && ((i - 1 < 0)
@@ -60,7 +63,7 @@ int input(char** str, int* length)
                     || symbol((*str)[i - 1], "+-/*^") || ((*str)[i + 1] == '\0')
                     || ((*str)[i - 1] == '\0')))) //Неверно расположена точка
         {
-            wronginput()
+            wronginput();
         }
         for (i = 0; (*str)[i] != '\0'; i++) {
             if (indicator) {
@@ -70,37 +73,37 @@ int input(char** str, int* length)
                 if ((*str)[i] == ')') {
                     open--;
                     if (open < 0) { //Если закрытых скобок больше открытых
-                        wronginput()
+                        wronginput();
                     }
                 }
             } else {
-                wronginput()
+                wronginput();
             }
         }
         if (open) { //Если открытых скобок больше закрытых
-            wronginput()
+            wronginput();
         }
         if ((*str)[i] == '.') { //если точка рядом со скобками
             if (symbol((*str)[i + 1], "()") || symbol((*str)[i - 1], "()")) {
-                wronginput()
+                wronginput();
             }
             for (j = i + 1; (*str)[j] != '\0'; j++) {
                 if ((*str)[j] == '.') {
-                    wronginput()
+                    wronginput();
                 }
             }
         }
         if (((*str)[i] == '(') && (i > 0)) { //посторонние знаки у скобок
             if (symbol((*str)[i - 1], "(+-/*^") == 0) {
-                wronginput()
+                wronginput();
             }
             if ((*str)[i + 1] == ')') {
-                wronginput()
+                wronginput();
             }
         }
         if (((*str)[i] == ')') && ((*str)[i + 1] != '\0')) {
             if (symbol((*str)[i + 1], ")+-/*^") == 0) {
-                wronginput()
+                wronginput();
             }
         }
     }
