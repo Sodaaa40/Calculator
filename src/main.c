@@ -4,6 +4,7 @@
 gchar text[100];
 gchar otv[20];
 int f = 0;
+int length = 0;
 GtkWidget* okno;
 
 int main(int a, char* h[])
