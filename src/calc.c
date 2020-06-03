@@ -1,4 +1,5 @@
 #include "input.h"
+#include "calc.h"
 #include <stdio.h>
 #include <math.h>
 
