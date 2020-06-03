@@ -1,12 +1,16 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include "input.h"
+#include "calc.h"
 
+double Calc(char *str, int launch, int end);
+int input(char** str, int* length);
 extern int f;
+extern int length;
 extern gchar text[100];
 extern gchar otv[20];
 extern GtkWidget* okno;
-void input(char **str, int* length);
+int input(char **str, int* length);
 
 void zero_clicked(GtkWidget* widget, gpointer data) {
 	strcat(text, (gchar*)data);
@@ -90,5 +94,10 @@ void delete_clicked(GtkWidget* widget, gpointer data) {
 }
 void result_clicked(GtkWidget* widget, gpointer data) {
     char *s = &text[0];
-    input(&s, &f);
+    if(input(&s, &length)) return;
+    sprintf(otv, "%lf", Calc(text, 0, length - 1));
+	printf("%s\n", otv);
+	memset(text, 0, 100);
+	gtk_entry_set_text(GTK_ENTRY(okno), otv);
+	length = 0;
 }
