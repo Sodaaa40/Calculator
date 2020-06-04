@@ -1,9 +1,10 @@
 #include "func.h"
 #include <gtk/gtk.h>
 
-gchar text[100];
-gchar otv[20];
+gchar text[100] = {0};
+gchar otv[20] = {0};
 int f = 0;
+int length = 0;
 GtkWidget* okno;
 
 int main(int a, char* h[])
@@ -16,65 +17,64 @@ int main(int a, char* h[])
             *minus, *result, *delete, *sqrt, *pow;
 
     zero = gtk_button_new_with_label("0");
-    g_signal_connect(G_OBJECT(zero), "clicked", G_CALLBACK(zero_clicked), "0");
+    g_signal_connect(
+            G_OBJECT(zero), "clicked", G_CALLBACK(button_clicked), "0");
     one = gtk_button_new_with_label("1");
-    g_signal_connect(G_OBJECT(one), "clicked", G_CALLBACK(one_clicked), "1");
+    g_signal_connect(G_OBJECT(one), "clicked", G_CALLBACK(button_clicked), "1");
     two = gtk_button_new_with_label("2");
-    g_signal_connect(G_OBJECT(two), "clicked", G_CALLBACK(two_clicked), "2");
+    g_signal_connect(G_OBJECT(two), "clicked", G_CALLBACK(button_clicked), "2");
     three = gtk_button_new_with_label("3");
     g_signal_connect(
-            G_OBJECT(three), "clicked", G_CALLBACK(three_clicked), "3");
+            G_OBJECT(three), "clicked", G_CALLBACK(button_clicked), "3");
     four = gtk_button_new_with_label("4");
-    g_signal_connect(G_OBJECT(four), "clicked", G_CALLBACK(four_clicked), "4");
+    g_signal_connect(
+            G_OBJECT(four), "clicked", G_CALLBACK(button_clicked), "4");
     five = gtk_button_new_with_label("5");
-    g_signal_connect(G_OBJECT(five), "clicked", G_CALLBACK(five_clicked), "5");
+    g_signal_connect(
+            G_OBJECT(five), "clicked", G_CALLBACK(button_clicked), "5");
     six = gtk_button_new_with_label("6");
-    g_signal_connect(G_OBJECT(six), "clicked", G_CALLBACK(six_clicked), "6");
+    g_signal_connect(G_OBJECT(six), "clicked", G_CALLBACK(button_clicked), "6");
     seven = gtk_button_new_with_label("7");
     g_signal_connect(
-            G_OBJECT(seven), "clicked", G_CALLBACK(seven_clicked), "7");
+            G_OBJECT(seven), "clicked", G_CALLBACK(button_clicked), "7");
     eight = gtk_button_new_with_label("8");
     g_signal_connect(
-            G_OBJECT(eight), "clicked", G_CALLBACK(eight_clicked), "8");
+            G_OBJECT(eight), "clicked", G_CALLBACK(button_clicked), "8");
     nine = gtk_button_new_with_label("9");
-    g_signal_connect(G_OBJECT(nine), "clicked", G_CALLBACK(nine_clicked), "9");
+    g_signal_connect(
+            G_OBJECT(nine), "clicked", G_CALLBACK(button_clicked), "9");
     plus = gtk_button_new_with_label("+");
-    g_signal_connect(G_OBJECT(plus), "clicked", G_CALLBACK(plus_clicked), "+");
+    g_signal_connect(
+            G_OBJECT(plus), "clicked", G_CALLBACK(button_clicked), "+");
     minus = gtk_button_new_with_label("-");
     g_signal_connect(
-            G_OBJECT(minus), "clicked", G_CALLBACK(minus_clicked), "-");
+            G_OBJECT(minus), "clicked", G_CALLBACK(button_clicked), "-");
     divide = gtk_button_new_with_label("/");
     g_signal_connect(
-            G_OBJECT(divide), "clicked", G_CALLBACK(divide_clicked), "/");
+            G_OBJECT(divide), "clicked", G_CALLBACK(button_clicked), "/");
     multiply = gtk_button_new_with_label("*");
     g_signal_connect(
-            G_OBJECT(multiply), "clicked", G_CALLBACK(multiply_clicked), "*");
+            G_OBJECT(multiply), "clicked", G_CALLBACK(button_clicked), "*");
     sqrt = gtk_button_new_with_label("sqrt");
     g_signal_connect(
-            G_OBJECT(sqrt), "clicked", G_CALLBACK(sqrt_clicked), "^(0.5)");
+            G_OBJECT(sqrt), "clicked", G_CALLBACK(button_clicked), "^(0.5)");
     pow = gtk_button_new_with_label("^");
-    g_signal_connect(G_OBJECT(pow), "clicked", G_CALLBACK(pow_clicked), "^");
+    g_signal_connect(G_OBJECT(pow), "clicked", G_CALLBACK(button_clicked), "^");
     leftBracket = gtk_button_new_with_label("(");
     g_signal_connect(
-            G_OBJECT(leftBracket),
-            "clicked",
-            G_CALLBACK(leftBracket_clicked),
-            "(");
+            G_OBJECT(leftBracket), "clicked", G_CALLBACK(button_clicked), "(");
     rightBracket = gtk_button_new_with_label(")");
     g_signal_connect(
-            G_OBJECT(rightBracket),
-            "clicked",
-            G_CALLBACK(rightBracket_clicked),
-            ")");
+            G_OBJECT(rightBracket), "clicked", G_CALLBACK(button_clicked), ")");
     point = gtk_button_new_with_label(".");
     g_signal_connect(
-            G_OBJECT(point), "clicked", G_CALLBACK(point_clicked), ".");
+            G_OBJECT(point), "clicked", G_CALLBACK(button_clicked), ".");
     delete = gtk_button_new_with_label("C");
     g_signal_connect(
-            G_OBJECT(delete), "clicked", G_CALLBACK(delete_clicked), "C");
+            G_OBJECT(delete), "clicked", G_CALLBACK(button_clicked), "C");
     result = gtk_button_new_with_label("=");
     g_signal_connect(
-            G_OBJECT(result), "clicked", G_CALLBACK(result_clicked), "=");
+            G_OBJECT(result), "clicked", G_CALLBACK(button_clicked), "=");
     GtkWidget* window;
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Калькулятор");
