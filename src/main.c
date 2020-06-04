@@ -1,8 +1,8 @@
 #include "func.h"
 #include <gtk/gtk.h>
 
-gchar text[100];
-gchar otv[20];
+gchar text[100] = {0};
+gchar otv[20] = {0};
 int f = 0;
 int length = 0;
 GtkWidget* okno;
