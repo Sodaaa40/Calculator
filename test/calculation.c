@@ -1,4 +1,7 @@
 #include "../src/calc.h"
+#include "../thirdparty/ctest.h"
+#include "../src/input.h"
+#include "../test/calculation.h"
 #include <ctest.h>
 #include <gtk/gtk.h>
 #include <math.h>
