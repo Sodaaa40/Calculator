@@ -1,0 +1,6 @@
+dist: xenial
+language: c
+compiler : gcc
+dist: xenial
+install: sudo apt-get install gtk+2.0
+script: make && - git ls-files src/ | xargs clang-format -i && ./bin/calculation-test && git diff --exit-code
