@@ -2,7 +2,6 @@
 #include "../thirdparty/ctest.h"
 #include "../src/input.h"
 #include "../test/calculation.h"
-#include <ctest.h>
 #include <gtk/gtk.h>
 #include <math.h>
 #include <stdio.h>
@@ -110,8 +109,8 @@ CTEST(divide, CALCULATION)
 {
     const double exp1 = 9;
     const double exp2 = 30;
-    const double exp3 = 93.1;
-    const double exp4 = -8.4;
+    const double exp3 = 466.25;
+    const double exp4 = -14.4;
 
     input = malloc(10);
 
@@ -119,11 +118,11 @@ CTEST(divide, CALCULATION)
     int s1 = strlen(input);
     double c1 = Calc(input, 0, s1 - 1);
 
-    strcpy(input, "15/0.5");
+    strcpy(input, "15/(0.5)");
     int s2 = strlen(input);
     double c2 = Calc(input, 0, s2 - 1);
 
-    strcpy(input, "1865/4/5");
+    strcpy(input, "1865/4");
     int s3 = strlen(input);
     double c3 = Calc(input, 0, s3 - 1);
 
@@ -141,7 +140,7 @@ CTEST(pow, CALCULATION)
 {
     const double exp1 = 169;
     const double exp2 = 16105100000;
-    const double exp3 = 41.7852;
+    const double exp3 = 7770.573760;
     const double exp4 = 0.0135;
 
     input = malloc(10);
@@ -170,22 +169,22 @@ CTEST(pow, CALCULATION)
 
 CTEST(sqrt, CALCULATION)
 {
-    const double exp1 = 169;
-    const double exp2 = 16105100000;
-    const double exp3 = 41.7852;
-    const double exp4 = 0.0135;
+    const double exp1 = 5;
+    const double exp2 = 7;
+    const double exp3 = 3.605551;
+    const double exp4 = 8.602325;
 
     input = malloc(10);
 
-    strcpy(input, "13^(0.5)");
+    strcpy(input, "25^(0.5)");
     int s1 = strlen(input);
     double c1 = Calc(input, 0, s1 - 1);
 
-    strcpy(input, "110^(0.5)");
+    strcpy(input, "49^(0.5)");
     int s2 = strlen(input);
     double c2 = Calc(input, 0, s2 - 1);
 
-    strcpy(input, "1746^(0.5)");
+    strcpy(input, "13^(0.5)");
     int s3 = strlen(input);
     double c3 = Calc(input, 0, s3 - 1);
 
@@ -198,3 +197,4 @@ CTEST(sqrt, CALCULATION)
     ASSERT_EQUAL(exp3, c3);
     ASSERT_EQUAL(exp4, c4);
 }
+
